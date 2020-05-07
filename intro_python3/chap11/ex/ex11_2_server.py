@@ -1,0 +1,23 @@
+from datetime import datetime
+import zmq
+
+host = '127.0.0.1'
+port = 6789
+
+context = zmq.Context()
+server = context.socket(zmq.REP)
+server.bind('tcp://%s:%s' % (host, port))
+
+while True:
+    request_bytes = server.recv()
+    request_str = request_bytes.decode('utf-8')
+
+    if request_str == 'time':
+        reply_str = datetime.now().isoformat()
+    else:
+        reply_str = "Please send 'time'."
+    
+    reply_bytes = reply_str.encode('utf-8')
+    server.send(reply_bytes)
+
+    print('Replyed:', datetime.now().isoformat())
