@@ -1,5 +1,6 @@
 import zmq
 import string
+from time import sleep
 
 words = '''We have seen thee, queen of cheese,
 Lying quietly at your ease,
@@ -37,6 +38,8 @@ port = 6789
 ctx = zmq.Context()
 pub = ctx.socket(zmq.PUB)
 pub.bind('tcp://%s:%s' % (host, port))
+
+sleep(1)
 
 for word in words:
     word = word.strip(string.punctuation)
