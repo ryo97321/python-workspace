@@ -20,7 +20,7 @@ class file_to_lines_test(unittest.TestCase):
 
     # ファイルの内容が日本語のみのとき
     def test_japanese_only(self):
-        lines_correct = ['おはよう', 'こんにちは', 'こんばんわ']
+        lines_correct = ['おはよう', 'こんにちは', 'こんばんは']
         fileLib = FileLib()
         lines_result = fileLib.file_to_lines('tests/data/japanese_only.txt')
         self.assertEqual(lines_correct, lines_result)
