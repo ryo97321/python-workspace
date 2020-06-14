@@ -24,3 +24,17 @@ class file_to_lines_test(unittest.TestCase):
         fileLib = FileLib()
         lines_result = fileLib.file_to_lines('tests/data/japanese_only.txt')
         self.assertEqual(lines_correct, lines_result)
+
+    # ファイルの中にアルファベットと日本語が混在しているとき
+    def test_alphabet_and_japanese(self):
+        lines_correct = ['abc', 'おはよう', 'def', 'こんにちは', 'ghi', 'こんばんは']
+        fileLib = FileLib()
+        lines_result = fileLib.file_to_lines('tests/data/alphabet_and_japanese.txt')
+        self.assertEqual(lines_correct, lines_result)
+
+    # ファイルの中に空行があるとき
+    def test_include_empty_line(self):
+        lines_correct = ['abc', '', 'def']
+        fileLib = FileLib()
+        lines_result = fileLib.file_to_lines('tests/data/include_empty_line.txt')
+        self.assertEqual(lines_correct, lines_result)
